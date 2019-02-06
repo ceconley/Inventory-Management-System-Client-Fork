@@ -9,14 +9,14 @@ Users must first sign up and sign in before gaining access to inventory tools.
 
 ### Link to back-end repo
 
-[https://github.com/ceconley/inventory-management-system-express-api](https://github.com/ceconley/inventory-management-system-express-api)
+[https://github.com/ceconley/inventory-management-system-express-api-fork](https://github.com/ceconley/inventory-management-system-express-api-fork)
 
 ### Link to deployed sites
 
 ##### Deployed heroku: 
 [https://pure-headland-95535.herokuapp.com](https://pure-headland-95535.herokuapp.com)
 ##### Deployed gh-pages: 
-[https://ceconley.github.io/inventory-management-system-client](https://ceconley.github.io/inventory-management-system-client)
+[https://ceconley.github.io/inventory-management-system-client-fork](https://ceconley.github.io/inventory-management-system-client-fork)
 Wireframe: [Wireframe Image](https://i.imgur.com/NnhgulF.jpg)
 
 ### Technologies used
