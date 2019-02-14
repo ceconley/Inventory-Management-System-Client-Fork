@@ -18,7 +18,6 @@ const onShowForDeleteItem = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
   store.itemId = data.item.id
-  console.log(store.itemId)
   api.showItem()
     .then(ui.showForDeleteSuccess)
     .catch(ui.showForDeleteFailure)

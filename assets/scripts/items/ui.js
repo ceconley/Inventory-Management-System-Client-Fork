@@ -26,7 +26,6 @@ const showFailure = () => {
 
 const showForDeleteSuccess = (response) => {
   const showItemsHtml = confirmDelete({ item: response.item })
-  console.log(response.item)
   $('#delete-confirm').empty()
   $('#delete-confirm').append(showItemsHtml)
 }
