@@ -1,6 +1,8 @@
 # Nozama Inventory Management System
 ##### By Team No demon or Node mon
 
+![Pic of App](https://github.com/ceconley/inventory-management-system-client-fork/blob/master/public/ims.png "App")
+
 The app is an inventory management system meant to keep track of items by
 allowing the user to show the entire inventory, find a specific item, delete an
 item, create an item, or update an item.
