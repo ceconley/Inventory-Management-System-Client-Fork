@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>nozama</title>
 
@@ -12,7 +13,9 @@
     <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
     <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
   </head>
+
   <body>
+    <!-- HEADER -->
     <div class="container">
       <div class="row button-div">
         <button class="button-auth" id="register">Register</button>
@@ -27,7 +30,9 @@
         <div id="auth-message"></div>
       </div>
     </div>
-    <!-- sign-in form -->
+
+    <!-- AUTH FORMS -->
+    <!-- SIGN-IN FORM -->
     <div class="login-box" id="login-box">
       <form id="sign-in">
         <fieldset>
@@ -43,7 +48,8 @@
         </fieldset>
       </form>
     </div>
-    <!-- sign-up form -->
+
+    <!-- SIGN-UP FORM -->
     <div class="login-box" id="signup-box">
       <form id="sign-up">
         <fieldset>
@@ -63,7 +69,97 @@
         </fieldset>
       </form>
     </div>
-    <!-- change-password modal -->
+
+    <!-- ITEM FORMS -->
+    <div class="container-fluid">
+      <div class="row form-row">
+        <div class="col-md-6 col-sm-12">
+
+          <!-- create-item -->
+          <form id="create-item" class="main-forms">
+            <fieldset>
+              <legend>Add an Item</legend>
+              <input type="text" name="item[upc]" placeholder="UPC" class="forms item-forms">
+              <input type="text" name="item[description]" placeholder="Description" class="forms item-forms">
+              <input type="text" name="item[price]" placeholder="Price" class="forms item-forms">
+              <br/>
+              <input type="text" name="item[cost]" placeholder="Cost" class="forms item-forms">
+              <input type="text" name="item[quantity]" placeholder="Quantity" class="forms item-forms">
+              <input type="text" name="item[ads]" placeholder="Average Daily Sales" class="forms item-forms">
+              <br>
+              <button type="submit" value="Submit item" class="btn btn-default btn-sm">Submit</button>
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+
+        <!-- EDIT AN ITEM FORM -->
+        <form id="update-item" class="main-forms">
+          <fieldset>
+            <legend>Edit an Item</legend>
+            <input type="text" name="item[id]" placeholder="Item Id" class="forms item-forms">
+            <input type="text" name="item[upc]" placeholder="UPC"class="forms item-forms">
+            <input type="text" name="item[description]" placeholder="Description" class="forms item-forms">
+            <br/>
+            <input type="text" name="item[price]" placeholder="Price"class="forms item-forms">
+            <input type="text" name="item[cost]" placeholder="Cost"class="forms item-forms">
+            <input type="text" name="item[quantity]" placeholder="Quantity" class="forms item-forms">
+            <br/>
+            <input type="text" name="item[ads]" placeholder="Average Daily Sales" class="forms item-forms">
+            <button type="submit" value="Go" class="btn btn-default btn-sm">Submit</button>
+          </fieldset>
+          </form>
+
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-md-4 col-sm-12">
+
+          <!-- SEE 1 INVENTORY ITEM -->
+          <form id="show-item" class="main-forms">
+            <fieldset>
+              <legend>See an Inventory Item</legend>
+              <input type="text" name="id" placeholder="Item Id" class="forms item-forms">
+              <button type="submit" value="Go" class="btn btn-default btn-sm">Submit</button>
+            </fieldset>
+          </form>
+
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+
+          <!-- DELETE AN INVENTORY ITEM -->
+          <form id="delete-item" class="main-forms">
+            <fieldset>
+              <legend>Remove an Item from Inventory</legend>
+              <input type="text" name="item[id]" placeholder="Item Id" class="forms item-forms">
+              <button type="submit" value='Delete' class="btn btn-default btn-sm" data-toggle="modal" 
+              data-target="#deleteItemModal">Submit</button>
+            </fieldset>
+          </form>
+
+        </div>
+
+        <div class="col-md-4 col-sm-12 main-forms">
+
+          <!-- SHOW-ALL-ITEMS -->
+          <button value="Show All Inventory" id="index-items" class="btn btn-default buttons-logged-in">Show All Inventory</button>
+
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- MESSAGE -->
+    <div class="results-message" id="results-message"></div>
+
+    <!-- INVENTORY TABLE -->
+    <div id="results"></div>
+
+    <!-- CHANGE-PASSWORD MODAL -->
     <div class="modal" id="changePasswordModal">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -84,89 +180,21 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid">
-      <div class="row form-row">
-        <div class="col-md-6 col-sm-12">
-          <!-- create-item -->
-          <form id="create-item" class="main-forms">
-            <fieldset>
-              <legend>Add an Item</legend>
-              <input type="text" name="item[upc]" placeholder="UPC" class="forms item-forms">
-              <input type="text" name="item[description]" placeholder="Description" class="forms item-forms">
-              <input type="text" name="item[price]" placeholder="Price" class="forms item-forms">
-              <br/>
-              <input type="text" name="item[cost]" placeholder="Cost" class="forms item-forms">
-              <input type="text" name="item[quantity]" placeholder="Quantity" class="forms item-forms">
-              <input type="text" name="item[ads]" placeholder="Average Daily Sales" class="forms item-forms">
-              <br>
-              <button type="submit" value="Submit item" class="btn btn-default btn-sm">Submit</button>
-            </fieldset>
-          </form>
-        </div>
-        <div class="col-md-6 col-sm-12">
-        <!-- Edit an item form -->
-        <form id="update-item" class="main-forms">
-          <fieldset>
-            <legend>Edit an Item</legend>
-            <input type="text" name="item[id]" placeholder="Item Id" class="forms item-forms">
-            <input type="text" name="item[upc]" placeholder="UPC"class="forms item-forms">
-            <input type="text" name="item[description]" placeholder="Description" class="forms item-forms">
-            <br/>
-            <input type="text" name="item[price]" placeholder="Price"class="forms item-forms">
-            <input type="text" name="item[cost]" placeholder="Cost"class="forms item-forms">
-            <input type="text" name="item[quantity]" placeholder="Quantity" class="forms item-forms">
-            <br/>
-            <input type="text" name="item[ads]" placeholder="Average Daily Sales" class="forms item-forms">
-            <button type="submit" value="Go" class="btn btn-default btn-sm">Submit</button>
-          </fieldset>
-          </form>
-        </div>
-      </div>
-      <div class="row form-row">
-        <div class="col-md-4 col-sm-12">
-          <!-- see 1 inventory item -->
-          <form id="show-item" class="main-forms">
-            <fieldset>
-              <legend>See an Inventory Item</legend>
-              <input type="text" name="id" placeholder="Item Id" class="forms item-forms">
-              <button type="submit" value="Go" class="btn btn-default btn-sm">Submit</button>
-            </fieldset>
-          </form>
-        </div>
-        <div class="col-md-4 col-sm-12">
-          <!-- delete an inventory item -->
-          <form id="delete-item" class="main-forms">
-            <fieldset>
-              <legend>Remove an Item from Inventory</legend>
-              <input type="text" name="item[id]" placeholder="Item Id" class="forms item-forms">
-              <button type="submit" value='Delete' class="btn btn-default btn-sm" data-toggle="modal" 
-              data-target="#deleteItemModal">Submit</button>
-            </fieldset>
-          </form>
-        </div>
-        <div class="col-md-4 col-sm-12 main-forms">
-            <!-- show-all-items -->
-            <button value="Show All Inventory" id="index-items" class="btn btn-default buttons-logged-in">Show All Inventory</button>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteItemModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Confirmation</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-        <!-- Delete Confirmation Modal -->
-        <div class="modal" id="deleteItemModal">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Confirmation</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              <div class="modal-body">
-                <div id="delete-confirm"></div>
-              </div>
-            </div>
+          <div class="modal-body">
+            <div id="delete-confirm"></div>
           </div>
         </div>
       </div>
     </div>
-    <br>
-    <br>
-    <div class="results-message" id="results-message"></div>
-    <div id="results"></div>
+
   </body>
 </html>

@@ -1,16 +1,15 @@
 'use strict'
-
 const config = require('../config.js')
 const store = require('../store.js')
 
-const showItem = data => {
+const createItem = data => {
   return $.ajax({
-    url: config.apiUrl + `/items/${store.itemId}`,
-    method: 'GET',
+    url: config.apiUrl + '/items',
+    method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data
+    data: data
   })
 }
 
@@ -34,25 +33,14 @@ const indexItemsTwo = () => {
   })
 }
 
-const createItem = data => {
+const showItem = data => {
   return $.ajax({
-    url: config.apiUrl + '/items',
-    method: 'POST',
+    url: config.apiUrl + `/items/${store.itemId}`,
+    method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data: data
-  })
-}
-
-const deleteItem = data => {
-  return $.ajax({
-    url: config.apiUrl + '/items/' + data,
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    },
-    data: {}
+    data
   })
 }
 
@@ -67,11 +55,22 @@ const updateItem = data => {
   })
 }
 
+const deleteItem = data => {
+  return $.ajax({
+    url: config.apiUrl + '/items/' + data,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {}
+  })
+}
+
 module.exports = {
-  showItem,
-  indexItems,
   createItem,
-  deleteItem,
+  indexItems,
+  indexItemsTwo,
+  showItem,
   updateItem,
-  indexItemsTwo
+  deleteItem
 }

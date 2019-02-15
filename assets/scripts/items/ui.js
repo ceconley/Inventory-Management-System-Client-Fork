@@ -11,6 +11,39 @@ const resetForms = () => {
   $('#results').text('')
 }
 
+const createSuccess = (data) => {
+  resetForms()
+  const showItemsHtml = showOneItemTemplate({ item: data })
+  $('#results').empty()
+  $('#results').append(showItemsHtml)
+  $('#results-message').text('Item Successfully Created')
+}
+
+const createFailure = () => {
+  $('#results-message').text('Create Item Failed')
+  resetForms()
+}
+
+const indexSuccess = (response) => {
+  resetForms()
+  const showItemsHtml = showItemsTemplate({ items: response.items })
+  $('#results').empty()
+  $('#results').append(showItemsHtml)
+  $('#results-message').text('')
+}
+
+const indexSuccess1 = (response) => {
+  resetForms()
+  const showItemsHtml = showItemsTemplate({ items: response.items })
+  $('#results').empty()
+  $('#results').append(showItemsHtml)
+}
+
+const indexFailure = () => {
+  resetForms()
+  $('#results-message').text('Could Not Retrieve Inventory')
+}
+
 const showSuccess = (response) => {
   resetForms()
   const showItemsHtml = showOneItemTemplate({ item: response })
@@ -35,24 +68,17 @@ const showForDeleteFailure = () => {
   $('#results-message').text('Error deleting item')
 }
 
-const indexSuccess = (response) => {
+const updateSuccess = () => {
   resetForms()
-  const showItemsHtml = showItemsTemplate({ items: response.items })
-  $('#results').empty()
-  $('#results').append(showItemsHtml)
-  $('#results-message').text('')
+  $('#results-message').text('Item successfully updated')
+  api.showItem()
+    .then(showSuccess)
+    .catch(showFailure)
 }
 
-const indexSuccess1 = (response) => {
+const updateFailure = () => {
   resetForms()
-  const showItemsHtml = showItemsTemplate({ items: response.items })
-  $('#results').empty()
-  $('#results').append(showItemsHtml)
-}
-
-const indexFailure = () => {
-  resetForms()
-  $('#results-message').text('Could Not Retrieve Inventory')
+  $('#results-message').text('Could Not Update Item')
 }
 
 const deleteSuccess = () => {
@@ -69,44 +95,18 @@ const deleteFailure = () => {
   $('.forms').val('')
 }
 
-const updateSuccess = () => {
-  resetForms()
-  $('#results-message').text('Item successfully updated')
-  api.showItem()
-    .then(showSuccess)
-    .catch(showFailure)
-}
-
-const updateFailure = () => {
-  resetForms()
-  $('#results-message').text('Could Not Update Item')
-}
-
-const createSuccess = (data) => {
-  resetForms()
-  const showItemsHtml = showOneItemTemplate({ item: data })
-  $('#results').empty()
-  $('#results').append(showItemsHtml)
-  $('#results-message').text('Item Successfully Created')
-}
-
-const createFailure = () => {
-  $('#results-message').text('Create Item Failed')
-  resetForms()
-}
-
 module.exports = {
+  createSuccess,
+  createFailure,
+  indexSuccess,
+  indexFailure,
+  indexSuccess1,
   showSuccess,
   showFailure,
   showForDeleteSuccess,
   showForDeleteFailure,
-  indexSuccess,
-  indexFailure,
-  deleteSuccess,
-  deleteFailure,
-  createSuccess,
-  createFailure,
   updateSuccess,
   updateFailure,
-  indexSuccess1
+  deleteSuccess,
+  deleteFailure
 }

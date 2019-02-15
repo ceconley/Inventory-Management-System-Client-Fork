@@ -1,10 +1,27 @@
 'use strict'
-
 const api = require('./api.js')
 const ui = require('./ui.js')
 const getFormFields = require('../../../lib/get-form-fields.js')
 const store = require('../store.js')
 
+// CREATE
+const onCreateItem = event => {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.createItem(data)
+    .then(ui.createSuccess)
+    .catch(ui.createFailure)
+}
+
+// READ - INDEX
+const onIndexItems = event => {
+  event.preventDefault()
+  api.indexItems()
+    .then(ui.indexSuccess)
+    .catch(ui.indexFailure)
+}
+
+// READ - SHOW
 const onShowItem = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
@@ -23,28 +40,7 @@ const onShowForDeleteItem = event => {
     .catch(ui.showForDeleteFailure)
 }
 
-const onIndexItems = event => {
-  event.preventDefault()
-  api.indexItems()
-    .then(ui.indexSuccess)
-    .catch(ui.indexFailure)
-}
-
-const onCreateItem = event => {
-  event.preventDefault()
-  const data = getFormFields(event.target)
-  api.createItem(data)
-    .then(ui.createSuccess)
-    .catch(ui.createFailure)
-}
-
-const onDeleteItem = () => {
-  const data = store.itemId
-  api.deleteItem(data)
-    .then(ui.deleteSuccess)
-    .catch(ui.deleteFailure)
-}
-
+// UPDATE
 const onUpdateItem = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
@@ -54,11 +50,19 @@ const onUpdateItem = event => {
     .catch(ui.updateFailure)
 }
 
+// DELETE
+const onDeleteItem = () => {
+  const data = store.itemId
+  api.deleteItem(data)
+    .then(ui.deleteSuccess)
+    .catch(ui.deleteFailure)
+}
+
 module.exports = {
+  onCreateItem,
+  onIndexItems,
   onShowItem,
   onShowForDeleteItem,
-  onIndexItems,
-  onCreateItem,
-  onDeleteItem,
-  onUpdateItem
+  onUpdateItem,
+  onDeleteItem
 }
