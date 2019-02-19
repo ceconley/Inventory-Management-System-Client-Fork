@@ -45,6 +45,11 @@ const onUpdateItem = event => {
   event.preventDefault()
   const data = getFormFields(event.target)
   store.itemId = data.item.id
+  for (const prop in data) {
+    if (data[prop] === '') {
+      delete data[prop]
+    }
+  }
   api.updateItem(data)
     .then(ui.updateSuccess)
     .catch(ui.updateFailure)

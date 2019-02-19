@@ -49,7 +49,6 @@ const showSuccess = (response) => {
   const showItemsHtml = showOneItemTemplate({ item: response })
   $('#results').empty()
   $('#results').append(showItemsHtml)
-  $('#results-message').text('Item:')
 }
 
 const showFailure = () => {
